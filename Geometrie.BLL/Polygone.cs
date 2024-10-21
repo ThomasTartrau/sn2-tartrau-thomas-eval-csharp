@@ -6,20 +6,16 @@ using System.Threading.Tasks;
 
 namespace Geometrie.BLL
 {
-    public class Polygone
+    public abstract class Polygone : IEnumerable<Point>, IForme
     {
         private ArrayList lesPoints;
-
+            
         //indexeur
         public Point this[int index]
         {
             get
             {
                 return (Point)lesPoints[index];
-            }
-            set
-            {
-                lesPoints[index] = value;
             }
         }
 
@@ -57,5 +53,47 @@ namespace Geometrie.BLL
             if(autresPoints != null)
                 lesPoints.AddRange(autresPoints);
         }
+
+        public IEnumerator<Point> GetEnumerator()
+        {
+            foreach (Point p in lesPoints)
+            {
+                //yield c'est un mot clé qui permet de retourner un élément à la fois
+                yield return p;
+            }   
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            foreach (Point p in lesPoints)
+            {
+                sb.Append(p);
+                sb.Append(" ");
+            }
+            sb.Append("]");
+            return sb.ToString();
+        }
+
+        public double CalculerPerimetre()
+        {
+            double perimetre = 0;
+            for (int i = 0; i < Count - 1; i++)
+            {
+                Point p1 = this[i];
+                Point p2 = this[i + 1];
+                perimetre += p1.CalculerDistance(p2);
+            }
+            perimetre += this[Count - 1].CalculerDistance(this[0]);
+            return perimetre;
+        }
+
+        public abstract double CalculerAire();
     }
 }

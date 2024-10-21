@@ -45,5 +45,13 @@
         {
             return System.Math.Sqrt(System.Math.Pow(X - autre.X, 2) + System.Math.Pow(Y - autre.Y, 2));
         }
+
+        //public override string ToString()
+        //{
+        //    return $"({X}, {Y})";
+        //}
+        //version abrégée
+        public override string ToString() => $"({X}, {Y})";
+                                                ///"(" + X + ", " + Y + ")";
     }
 }

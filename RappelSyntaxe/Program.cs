@@ -12,7 +12,7 @@ if (true)
 {
     int b = 3;
 }
-Console.WriteLine(b);
+
 
 //Inférence de type
 var c = "5";
