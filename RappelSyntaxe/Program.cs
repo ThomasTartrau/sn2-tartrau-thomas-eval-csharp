@@ -1,10 +1,13 @@
-﻿//commentaire
+﻿using RappelSyntaxe;
+
+//commentaire
 /* commentaire
  * commentaire
  * commentaire
  */
 
 //déclaration de variable
+
 int a;
 //dfslfjd
 a = 5;
@@ -61,5 +64,32 @@ liste.Add(5);
 //syntaxe rapide d'affectation
 List<int> liste2 = new List<int> { 1, 2, 3, 4, 5 };
 
+//Méthode d'extension
+//on ajoute une méthode à une classe sans la modifier
+var chaine = "une chaine de caractères";
+Console.WriteLine(chaine.MajusculeAuDebutDesMots());
 
+//LINQ
+// Language INtegrated Query
+//C'est un ensemble de méthodes d'extension sur IEnumerable<T>
+//Ca permet de manipuler les listes, tableaux etc...
+//de manière plus simple et plus lisible
+var listeDEntiers = new List<int>() { 1, 6, 9, 3, -5, -4, 8 };
+//on veut les entiers positifs
+//var lesPositifs = new List<int>();
+//foreach (var item in listeDEntiers)
+//{
+//    if (item > 0)
+//    {
+//        lesPositifs.Add(item);
+//    }
+//}
+//var lesPositifs = from i in listeDEntiers
+//                  where i > 0
+//                  select i;
+var lesPositifs = listeDEntiers.Where(i => i > 0).ToList();
 
+var uneAutreListe = new List<int>() { 6, 8, 3, -2, 9, 7 };
+
+//je cherche les éléments communs
+var entierCommuns = listeDEntiers.Intersect(uneAutreListe).ToList();

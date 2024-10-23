@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GeneriquesEtDelegues;
+using System.Collections;
 
 //je veux pouvoir faire des for et des foreach sur ma liste
 internal class Liste<T> : IEnumerable<T>
@@ -23,8 +24,11 @@ internal class Liste<T> : IEnumerable<T>
     IEnumerator IEnumerable.GetEnumerator()
         => GetEnumerator();
 
-    public void Trier()
+    public void Trier(DelegueQuiCompareDeuxMachins<T> test)
     {
+        if (test == null)
+            throw new System.ArgumentNullException(nameof(test));
+
         //tri par inversion
         //on va convertir les T en int
         //et comparer les int
@@ -32,7 +36,7 @@ internal class Liste<T> : IEnumerable<T>
         {
             for (int j = i + 1; j < list.Count; j++)
             {
-                if ((T)list[i] > (T)list[j])
+                if (test((T)list[i],(T)list[j]))
                 {
                     var temp = list[i];
                     list[i] = list[j];

@@ -43,7 +43,10 @@
         /// <returns>la distance</returns>
         public double CalculerDistance(Point autre)
         {
-            return System.Math.Sqrt(System.Math.Pow(X - autre.X, 2) + System.Math.Pow(Y - autre.Y, 2));
+            if (autre == null)
+                throw new ArgumentNullException(nameof(autre));
+
+            return Math.Sqrt(Math.Pow(X - autre.X, 2) + Math.Pow(Y - autre.Y, 2));
         }
 
         //public override string ToString()
