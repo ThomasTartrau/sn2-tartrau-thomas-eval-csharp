@@ -37,16 +37,31 @@
         }
 
         /// <summary>
-        /// Calcule la distance entre ce point et un autre.
+        /// Calcule la distance au caré entre ce point et un autre.
+        /// </summary>
+        /// <param name="autre">autre point</param>
+        /// <returns>la distance au carré</returns>
+        public double CalculerDistanceCarre(Point autre)
+        {
+            ArgumentNullException.ThrowIfNull(nameof(autre));
+
+            return Math.Pow(X - autre.X, 2) + Math.Pow(Y - autre.Y, 2);
+        }
+
+        /// <summary>
+        /// Calcule la distance entre ce point et un autre (valeur approximative à cause du Sqrt).
         /// </summary>
         /// <param name="autre">Un autre <see cref="Point"/></param>
         /// <returns>la distance</returns>
         public double CalculerDistance(Point autre)
         {
-            if (autre == null)
-                throw new ArgumentNullException(nameof(autre));
+            //je lève une exception si autre est null
+            //if (autre == null)
+            //    throw new ArgumentNullException(nameof(autre));
+            //on peut aussi l'écrire comme ça
+            ArgumentNullException.ThrowIfNull(nameof(autre));
 
-            return Math.Sqrt(Math.Pow(X - autre.X, 2) + Math.Pow(Y - autre.Y, 2));
+            return Math.Sqrt(CalculerDistanceCarre(autre));
         }
 
         //public override string ToString()
@@ -55,18 +70,21 @@
         //}
         //version abrégée
         public override string ToString() => $"({X}, {Y})";
-        ///"(" + X + ", " + Y + ")";
-        ///
 
-        //on implémente l'opérateur ==
+        //on implémente l'opérateur == pour pourvoir comparer 2 points entre eux
         public static bool operator ==(Point p1, Point p2)
         {
+            //si deux variables pointent sur le même objet
             if (ReferenceEquals(p1, p2))
                 return true;
+            //si un des deux objets est null
             if (ReferenceEquals(p1, null) || ReferenceEquals(p2, null))
                 return false;
+            //si les coordonnées des points sont égales
             return p1.X == p2.X && p1.Y == p2.Y;
         }
+
+        //on implémente l'opérateur != obligatoire si on fait le ==
         public static bool operator !=(Point p1, Point p2) => !(p1 == p2);
 
     }
