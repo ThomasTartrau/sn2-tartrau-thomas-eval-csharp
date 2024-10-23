@@ -57,13 +57,9 @@ namespace Geometrie.BLL
 
             //lever une exception si au moins 2 points ont les mêmes coordonnées
             for (int i = 0; i < Count - 1; i++)
-            {
                 for (int j = i + 1; j < Count; j++)
-                {
                     if (this[i] == this[j])
                         throw new ArgumentException("2 points ont les mêmes coordonnées");
-                }
-            }
         }
 
         public IEnumerator<Point> GetEnumerator()

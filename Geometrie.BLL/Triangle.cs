@@ -11,6 +11,18 @@ namespace Geometrie.BLL
         public Triangle(Point a, Point b, Point c) 
             : base(a, b, c)
         {
+            //je calcule la taille de tous les côtés
+            var cotes = new List<double>()
+            {
+                a.CalculerDistance(b), b.CalculerDistance(c), c.CalculerDistance(a)
+            };
+            //je les trie
+            cotes.Sort();
+
+            //si le plus grand est égale à la somme des 2 autres
+            if (cotes[2] <= cotes[0] + cotes[1])
+                throw new ArgumentException("Les points sont alignés");
+
         }
 
         public override double CalculerAire()
