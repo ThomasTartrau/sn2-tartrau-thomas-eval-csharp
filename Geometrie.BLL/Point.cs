@@ -37,15 +37,15 @@
         }
 
         /// <summary>
-        /// Calcule la distance au caré entre ce point et un autre.
+        /// Calcule la distance au carré entre ce point et un autre.
         /// </summary>
         /// <param name="autre">autre point</param>
         /// <returns>la distance au carré</returns>
-        public double CalculerDistanceCarre(Point autre)
+        public int CalculerDistanceCarre(Point autre)
         {
             ArgumentNullException.ThrowIfNull(nameof(autre));
 
-            return Math.Pow(X - autre.X, 2) + Math.Pow(Y - autre.Y, 2);
+            return Convert.ToInt32(Math.Pow(X - autre.X, 2) + Math.Pow(Y - autre.Y, 2));
         }
 
         /// <summary>

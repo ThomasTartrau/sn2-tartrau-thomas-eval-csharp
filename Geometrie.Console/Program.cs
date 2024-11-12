@@ -30,3 +30,16 @@ foreach (var forme in listeDeFormes)
     Console.WriteLine($"Périmètre : {forme.CalculerPerimetre()}");
     Console.WriteLine($"Aire : {forme.CalculerAire()}");
 }
+
+try
+{
+
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Geometrie.BLL.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,16 +25,17 @@ namespace Geometrie.BLL
         {
             //on vérifie que les points ne sont pas alignés
             //je calcule la taille de tous les côtés
-            var cotes = new List<double>()
+            var cotes = new List<int>()
             {
-                a.CalculerDistance(b), b.CalculerDistance(c), c.CalculerDistance(a)
+                a.CalculerDistanceCarre(b), b.CalculerDistanceCarre(c), c.CalculerDistanceCarre(a)
             };
             //je les trie
             cotes.Sort();
 
             //si le plus grand est égal à la somme des 2 autres
+            //je lève une exception spécialisée
             if (cotes[2] <= cotes[0] + cotes[1])
-                throw new ArgumentException("Les points sont alignés");
+                throw new PolygoneException("Les points sont alignés", this);
 
         }
 
