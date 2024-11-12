@@ -25,9 +25,9 @@ namespace Geometrie.BLL
         {
             //on vérifie que les points ne sont pas alignés
             //je calcule la taille de tous les côtés
-            var cotes = new List<int>()
+            var cotes = new List<double>()
             {
-                a.CalculerDistanceCarre(b), b.CalculerDistanceCarre(c), c.CalculerDistanceCarre(a)
+                a.CalculerDistance(b), b.CalculerDistance(c), c.CalculerDistance(a)
             };
             //je les trie
             cotes.Sort();

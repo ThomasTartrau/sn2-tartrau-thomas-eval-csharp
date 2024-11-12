@@ -67,7 +67,7 @@ List<int> liste2 = new List<int> { 1, 2, 3, 4, 5 };
 //Méthode d'extension
 //on ajoute une méthode à une classe sans la modifier
 var chaine = "une chaine de caractères";
-Console.WriteLine(chaine.MajusculeAuDebutDesMots());
+ Console.WriteLine(chaine.MajusculeAuDebutDesMots());
 
 //LINQ
 // Language INtegrated Query

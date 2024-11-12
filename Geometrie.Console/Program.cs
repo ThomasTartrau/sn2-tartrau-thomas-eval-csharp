@@ -1,4 +1,5 @@
 ﻿using Geometrie.BLL;
+using Geometrie.BLL.Exceptions;
 
 var p1 = new Point(4, 8);
 var p2 = new Point(3, 5);
@@ -33,7 +34,19 @@ foreach (var forme in listeDeFormes)
 
 try
 {
+    var a = new Point(1,1);
+    var b = new Point(2,2);
+    var c = new Point(3,3);
 
+    var triangleQuiPlante = new Triangle(a, b, c);
+}
+catch (PolygoneException ex)
+{
+    Console.WriteLine(ex.Message);
+    foreach (var point in ex.Points)
+    {
+        Console.WriteLine(point);
+    }
 }
 catch (ArgumentException ex)
 {
