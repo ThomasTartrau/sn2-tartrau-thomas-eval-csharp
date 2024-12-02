@@ -14,7 +14,7 @@ namespace Geometrie.DAL
         public DateTime? DateDeModification { get; set; }
 
         //pour faire la relation 1-n avec Point
-        public ICollection<Point> Points { get; set; }
+        public ICollection<Point_DAL> Points { get; set; }
 
         /// <summary>
         /// Quand j'ai des ICollection pour les relations
@@ -22,7 +22,7 @@ namespace Geometrie.DAL
         /// </summary>
         public Polygone()
         {
-            Points = new HashSet<Point>();
+            Points = new HashSet<Point_DAL>();
         }
     }
 }

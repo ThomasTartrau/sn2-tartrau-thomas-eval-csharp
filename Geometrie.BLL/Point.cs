@@ -6,6 +6,11 @@
     /// </summary>
     public class Point
     {
+        /// <summary>
+        /// pour stocker l'id du point qui vient de la base de données
+        /// </summary>
+        public int? Id{ get; set; }
+
         //un champ privé
         private int x;
 
@@ -34,6 +39,12 @@
         {
             X = x; //le this.X est implicite
             Y = y;
+        }
+
+        public Point(int id, int x, int y)
+            : this(x, y)
+        {
+            Id = id;
         }
 
         /// <summary>
@@ -70,6 +81,14 @@
         //}
         //version abrégée
         public override string ToString() => $"({X}, {Y})";
+
+        internal DAL.Point_DAL ToDAL()
+        {
+            if(Id == null)
+                return new DAL.Point_DAL(X, Y);
+            else
+                return new DAL.Point_DAL(Id.Value, X, Y);
+        }
 
         //on implémente l'opérateur == pour pourvoir comparer 2 points entre eux
         public static bool operator ==(Point p1, Point p2)

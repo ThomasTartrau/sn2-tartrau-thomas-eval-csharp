@@ -1,6 +1,6 @@
 ﻿namespace Geometrie.DAL
 {
-    public class Point
+    public class Point_DAL
     {
         public int? Id { get; set; }
         public int X { get; set; }
@@ -10,20 +10,16 @@
 
         public Polygone? Polygone { get; set; }
 
-        public Point(int x, int y, DateTime dateDeCreation)
+        public Point_DAL(int x, int y)
         {
             X = x;
             Y = y;
-            DateDeCreation = dateDeCreation;
         }
 
-        public Point(int id, int x, int y, DateTime dateDeCreation,
-                DateTime? dateDeModification, Polygone? polygone)
-            :this(x,y, dateDeCreation)
+        public Point_DAL(int id, int x, int y)
+            :this(x,y)
         {
             Id = id;
-            DateDeModification = dateDeModification;
-            Polygone = polygone;
         }
     }
 }

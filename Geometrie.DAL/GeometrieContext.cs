@@ -44,7 +44,7 @@ namespace Geometrie.DAL
         /// c'est ça qui va me permettre de faire des requêtes
         /// et de créer la table Points
         /// </summary>
-        public DbSet<Point> Points { get; set; }
+        public DbSet<Point_DAL> Points { get; set; }
         #endregion
     }
 }
