@@ -71,6 +71,9 @@ namespace Geometrie.BLL.Depots
 
         public Point Update(Point element)
         {
+            ArgumentNullException.ThrowIfNull(element, nameof(element));
+            ArgumentNullException.ThrowIfNull(element.Id, nameof(element.Id));
+
             var point_DAL = context.Points.Find(element.Id);
             if (point_DAL == null)
                 throw new ArgumentException("Le point n'existe pas en base de données", nameof(element));

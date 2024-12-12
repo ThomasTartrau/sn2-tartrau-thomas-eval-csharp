@@ -8,7 +8,7 @@ namespace Geometrie.BLL.Depots
 {
     public interface IDepot<T>
     {
-        T GetById(int id);
+        T? GetById(int id);
         IEnumerable<T> GetAll();
         T Add(T element);
         T Update(T element);

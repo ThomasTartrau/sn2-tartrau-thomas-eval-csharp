@@ -54,7 +54,11 @@
         /// <returns>la distance au carré</returns>
         public int CalculerDistanceCarre(Point autre)
         {
-            ArgumentNullException.ThrowIfNull(nameof(autre));
+            //je lève une exception si autre est null
+            //if (autre == null)
+            //    throw new ArgumentNullException(nameof(autre));
+            //on peut aussi l'écrire comme ça
+            ArgumentNullException.ThrowIfNull(autre, nameof(autre));
 
             return Convert.ToInt32(Math.Pow(X - autre.X, 2) + Math.Pow(Y - autre.Y, 2));
         }
@@ -66,11 +70,7 @@
         /// <returns>la distance</returns>
         public double CalculerDistance(Point autre)
         {
-            //je lève une exception si autre est null
-            //if (autre == null)
-            //    throw new ArgumentNullException(nameof(autre));
-            //on peut aussi l'écrire comme ça
-            ArgumentNullException.ThrowIfNull(nameof(autre));
+            ArgumentNullException.ThrowIfNull(autre, nameof(autre));
 
             return Math.Sqrt(CalculerDistanceCarre(autre));
         }

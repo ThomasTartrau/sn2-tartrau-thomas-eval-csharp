@@ -1,6 +1,6 @@
 namespace Geometrie.DAL.Tests
 {
-    public class PointTests
+    public class Point_DALTests
     {
         [Fact]
         public void Geometrie_DAL_Point_Constructor()

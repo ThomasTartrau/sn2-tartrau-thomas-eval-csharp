@@ -31,27 +31,42 @@ namespace Geometrie.Service
 
         public IService<Point_DTO> Delete(Point_DTO element)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(element, nameof(element));
+            ArgumentNullException.ThrowIfNull(element.Id, nameof(element.Id));
+
+            return Delete(element.Id.Value);
         }
 
         public IService<Point_DTO> Delete(int Id)
         {
-            throw new NotImplementedException();
+            depot.Delete(Id);
+
+            return this;
         }
 
         public IEnumerable<Point_DTO> GetAll()
         {
-            throw new NotImplementedException();
+            return depot.GetAll().Select(p=>new Point_DTO() { Id = p.Id, X = p.X, Y = p.Y });
         }
 
         public Point_DTO? GetById(int id)
         {
-            throw new NotImplementedException();
+            var point_BLL = depot.GetById(id);
+            if (point_BLL == null)
+                return null;
+
+            return new Point_DTO() { Id = point_BLL.Id, X = point_BLL.X, Y = point_BLL.Y };
         }
 
         public Point_DTO Update(Point_DTO element)
         {
-            throw new NotImplementedException();
+            ArgumentNullException.ThrowIfNull(element, nameof(element));
+            ArgumentNullException.ThrowIfNull(element.Id, nameof(element.Id));
+
+            var point_BLL = new Point(element.Id.Value, element.X, element.Y);
+            depot.Update(point_BLL);
+
+            return element;
         }
     }
 }

@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /Geometrie.DAL/appsettings.json
 /Geometrie.DAL.Tests/appsettings.json
+/Geometrie.BLL.Tests/appsettings.json
