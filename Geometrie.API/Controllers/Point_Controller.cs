@@ -8,9 +8,9 @@ namespace Geometrie.API.Controllers
     [Route("[controller]/[action]")]
     public class Point_Controller : Controller
     {
-        private Point_Service service;
+        private IService<Point_DTO> service;
 
-        public Point_Controller(Point_Service service)
+        public Point_Controller(IService<Point_DTO> service)
         {
             this.service = service;
         }

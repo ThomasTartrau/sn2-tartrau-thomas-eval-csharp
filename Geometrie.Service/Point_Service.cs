@@ -2,28 +2,36 @@
 using Geometrie.BLL.Depots;
 using Geometrie.DAL;
 using Geometrie.DTO;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace Geometrie.Service
 {
     public class Point_Service : IService<Point_DTO>
     {
-        private GeometrieContext context;
-        private Point_Depot depot;
+        private GeometrieContext? context;
+        private IDepot<Point> depot;
 
+        public Point_Service(IDepot<Point> unDepot)
+        {
+            ArgumentNullException.ThrowIfNull(unDepot);
+
+            depot = unDepot;
+        }
         public Point_Service(GeometrieContext context)
         {
             ArgumentNullException.ThrowIfNull(context, nameof(context));
 
             this.context = context;
             depot = new Point_Depot(context);
+
         }
 
         public Point_DTO Add(Point_DTO element)
         {
             ArgumentNullException.ThrowIfNull(element, nameof(element));
 
-            var point_BLL= new Point(element.X, element.Y);
-            depot.Add(point_BLL);
+            var point_BLL = new Point(element.X, element.Y);
+            point_BLL = depot.Add(point_BLL);
             element.Id = point_BLL.Id;
 
             return element;
@@ -46,7 +54,7 @@ namespace Geometrie.Service
 
         public IEnumerable<Point_DTO> GetAll()
         {
-            return depot.GetAll().Select(p=>new Point_DTO() { Id = p.Id, X = p.X, Y = p.Y });
+            return depot.GetAll().Select(p => new Point_DTO() { Id = p.Id, X = p.X, Y = p.Y });
         }
 
         public Point_DTO? GetById(int id)

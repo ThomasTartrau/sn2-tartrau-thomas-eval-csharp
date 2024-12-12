@@ -1,4 +1,5 @@
 using Geometrie.DAL;
+using Geometrie.DTO;
 using Geometrie.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //pour ajouter un service dans le conteneur d'injection de dépendances
-builder.Services.AddSingleton<Point_Service>(new Point_Service(new GeometrieContext()));
+builder.Services.AddSingleton<IService<Point_DTO>>(new Point_Service(new GeometrieContext()));
 
 
 var app = builder.Build();

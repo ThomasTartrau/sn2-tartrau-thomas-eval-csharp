@@ -13,6 +13,10 @@ namespace Geometrie.BLL.Depots
         //un contexte pour accéder à la base de données
         private GeometrieContext context;
 
+        public Point_Depot()
+        {
+            
+        }
 
         public Point_Depot(GeometrieContext context)
         {
