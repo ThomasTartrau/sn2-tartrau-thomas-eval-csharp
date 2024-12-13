@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //pour ajouter un service dans le conteneur d'injection de dépendances
-builder.Services.AddSingleton<IService<Point_DTO>>(new Point_Service(new GeometrieContext()));
+builder.Services.AddSingleton<IPoint_Service>(new Point_Service(new GeometrieContext()));
 
 
 var app = builder.Build();

@@ -11,8 +11,9 @@ namespace Geometrie.Service.Tests
         public void Point_Service_Constructeur()
         {
             //arrange
-            var depot = new Moq.Mock<Point_Depot>().Object;
-            var service = new Point_Service(depot);
+            var depot = new Moq.Mock<IDepot<Point>>().Object;
+            var log_depot = new Mock<IDepot<Log>>().Object;
+            var service = new Point_Service(depot, log_depot);
 
             //assert
             Assert.NotNull(service);
@@ -28,11 +29,12 @@ namespace Geometrie.Service.Tests
             //avec ce Moq je fais un "faux objet" depot
             //je n'utilise pas vraiment la couche BLL
             var depot = new Mock<IDepot<Point>>();
+            var log_depot = new Mock<IDepot<Log>>();
             //je paramètre une fausse méthode Add pour mon faux dépot
             //la fausse méthode imite la vraie : elle prend un Point en paramètre et retourne un Point
             depot.Setup(d => d.Add(It.IsAny<Point>())).Returns(new Point(1, 2, 3));
             //je peux créer mon service avec le faux objet
-            var service = new Point_Service(depot.Object);
+            var service = new Point_Service(depot.Object, log_depot.Object);
 
             var point = new Point_DTO() { Id=0, X=2, Y=3 };
 
@@ -56,8 +58,9 @@ namespace Geometrie.Service.Tests
         {
             //arrange
             var depot = new Mock<IDepot<Point>>();
+            var log_depot = new Mock<IDepot<Log>>();
             depot.Setup(d => d.Delete(It.IsAny<int>())).Returns(depot.Object);
-            var service = new Point_Service(depot.Object);
+            var service = new Point_Service(depot.Object, log_depot.Object);
 
             var point = new Point_DTO() { Id = 1, X = 2, Y = 3 };
 
@@ -75,8 +78,9 @@ namespace Geometrie.Service.Tests
         {
             //arrange
             var depot = new Mock<IDepot<Point>>();
+            var log_depot = new Mock<IDepot<Log>>();
             depot.Setup(d => d.Delete(It.IsAny<int>())).Returns(depot.Object);
-            var service = new Point_Service(depot.Object);
+            var service = new Point_Service(depot.Object, log_depot.Object);
 
             //act
             var result = service.Delete(1);
@@ -92,8 +96,9 @@ namespace Geometrie.Service.Tests
         {
             //arrange
             var depot = new Mock<IDepot<Point>>();
+            var log_depot = new Mock<IDepot<Log>>();
             depot.Setup(d => d.Update(It.IsAny<Point>())).Returns(new Point(1, 2, 3));
-            var service = new Point_Service(depot.Object);
+            var service = new Point_Service(depot.Object, log_depot.Object);
 
             var point = new Point_DTO() { Id = 1, X = 2, Y = 3 };
 
@@ -112,8 +117,9 @@ namespace Geometrie.Service.Tests
         {
             //arrange
             var depot = new Mock<IDepot<Point>>();
+            var log_depot = new Mock<IDepot<Log>>();
             depot.Setup(d => d.GetAll()).Returns(new List<Point>() { new Point(1, 2, 3), new Point(4, 5, 6) });
-            var service = new Point_Service(depot.Object);
+            var service = new Point_Service(depot.Object, log_depot.Object);
 
             //act
             var result = service.GetAll();
@@ -134,8 +140,9 @@ namespace Geometrie.Service.Tests
         {
             //arrange
             var depot = new Mock<IDepot<Point>>();
+            var log_depot = new Mock<IDepot<Log>>();
             depot.Setup(d => d.GetById(It.IsAny<int>())).Returns(new Point(1, 2, 3));
-            var service = new Point_Service(depot.Object);
+            var service = new Point_Service(depot.Object, log_depot.Object);
 
             //act
             var result = service.GetById(1);

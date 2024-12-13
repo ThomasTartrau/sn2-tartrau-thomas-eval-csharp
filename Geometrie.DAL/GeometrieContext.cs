@@ -45,6 +45,7 @@ namespace Geometrie.DAL
         /// et de créer la table Points
         /// </summary>
         public DbSet<Point_DAL> Points { get; set; }
+        public DbSet<Log_DAL> Logs { get; set; }
         #endregion
     }
 }

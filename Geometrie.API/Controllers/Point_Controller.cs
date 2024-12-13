@@ -8,9 +8,9 @@ namespace Geometrie.API.Controllers
     [Route("[controller]/[action]")]
     public class Point_Controller : Controller
     {
-        private IService<Point_DTO> service;
+        private IPoint_Service service;
 
-        public Point_Controller(IService<Point_DTO> service)
+        public Point_Controller(IPoint_Service service)
         {
             this.service = service;
         }
@@ -55,5 +55,30 @@ namespace Geometrie.API.Controllers
             return service.Update(point);
         }
 
+        [HttpPost]
+        [ActionName("CalculerDistanceByDTO")]
+        public double CalculerDistance(IEnumerable<Point_DTO> points)
+        {
+            //on vérifie qu'on en a 2
+            if (points.Count() != 2)
+                throw new System.ArgumentException("Il faut 2 points pour calculer une distance");
+
+            //on récupère l'adresse IP du client
+            var IP = HttpContext.Connection.RemoteIpAddress?.ToString();
+            IP = IP ?? "inconnue";
+
+            return service.CalculerDistance(points.ElementAt(0), points.ElementAt(1), IP);
+        }
+
+        [HttpPost]
+        [ActionName("CalculerDistanceById")]
+        public double CalculerDistance(int id1, int id2)
+        {
+            //on récupère l'adresse IP du client
+            var IP = HttpContext.Connection.RemoteIpAddress?.ToString();
+            IP = IP ?? "inconnue";
+
+            return service.CalculerDistance(id1, id2, IP);
+        }
     }
 }
