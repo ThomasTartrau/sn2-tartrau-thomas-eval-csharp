@@ -151,7 +151,7 @@ namespace Geometrie.API.Tests
             var p2 = new Point_DTO() { Id = 4, X = 5, Y = 6 };
 
             //act
-            var result = controller.CalculerDistance(new Point_DTO[] { p1, p2 });
+            var result = controller.CalculerDistance(new Tuple<Point_DTO, Point_DTO>(p1, p2));
 
             //assert
             Assert.Equal(1.0, result);

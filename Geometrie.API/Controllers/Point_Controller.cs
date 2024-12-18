@@ -57,17 +57,17 @@ namespace Geometrie.API.Controllers
 
         [HttpPost]
         [ActionName("CalculerDistanceByDTO")]
-        public double CalculerDistance(IEnumerable<Point_DTO> points)
+        public double CalculerDistance(Tuple<Point_DTO, Point_DTO> points)
         {
             //on vérifie qu'on en a 2
-            if (points.Count() != 2)
-                throw new System.ArgumentException("Il faut 2 points pour calculer une distance");
+            //if (points.Count() != 2)
+            //    throw new System.ArgumentException("Il faut 2 points pour calculer une distance");
 
             //on récupère l'adresse IP du client
             var IP = HttpContext?.Connection.RemoteIpAddress?.ToString();
             IP = IP ?? "inconnue";
 
-            return service.CalculerDistance(points.ElementAt(0), points.ElementAt(1), IP);
+            return service.CalculerDistance(points.Item1, points.Item2, IP);
         }
 
         [HttpPost]
