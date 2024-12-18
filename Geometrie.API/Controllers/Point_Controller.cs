@@ -64,7 +64,7 @@ namespace Geometrie.API.Controllers
                 throw new System.ArgumentException("Il faut 2 points pour calculer une distance");
 
             //on récupère l'adresse IP du client
-            var IP = HttpContext.Connection.RemoteIpAddress?.ToString();
+            var IP = HttpContext?.Connection.RemoteIpAddress?.ToString();
             IP = IP ?? "inconnue";
 
             return service.CalculerDistance(points.ElementAt(0), points.ElementAt(1), IP);
@@ -75,7 +75,7 @@ namespace Geometrie.API.Controllers
         public double CalculerDistance(int id1, int id2)
         {
             //on récupère l'adresse IP du client
-            var IP = HttpContext.Connection.RemoteIpAddress?.ToString();
+            var IP = HttpContext?.Connection.RemoteIpAddress?.ToString();
             IP = IP ?? "inconnue";
 
             return service.CalculerDistance(id1, id2, IP);
