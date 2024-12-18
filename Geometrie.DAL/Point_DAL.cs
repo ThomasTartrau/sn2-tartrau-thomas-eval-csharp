@@ -7,8 +7,8 @@
         public int Y { get; set; }
         public DateTime DateDeCreation { get; set; }
         public DateTime? DateDeModification { get; set; }
-
         public Polygone? Polygone { get; set; }
+        
 
         public Point_DAL(int x, int y)
         {

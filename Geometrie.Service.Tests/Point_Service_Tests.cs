@@ -11,7 +11,7 @@ namespace Geometrie.Service.Tests
         public void Point_Service_Constructeur()
         {
             //arrange
-            var depot = new Moq.Mock<IDepot<Point>>().Object;
+            var depot = new Mock<IDepot<Point>>().Object;
             var log_depot = new Mock<IDepot<Log>>().Object;
             var service = new Point_Service(depot, log_depot);
 
